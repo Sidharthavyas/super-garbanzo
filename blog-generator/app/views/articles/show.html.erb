@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= @article.title %> - AI Programming Blog</title>
+  <%= csrf_meta_tags %>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Georgia, serif;
+      background: #f5f7fa;
+      line-height: 1.8;
+      color: #2c3e50;
+    }
+    .nav {
+      background: #2c3e50;
+      padding: 15px;
+      text-align: center;
+    }
+    .nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 600;
+      font-family: -apple-system, sans-serif;
+    }
+    .nav a:hover { text-decoration: underline; }
+    .container { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    .article {
+      background: white;
+      padding: 60px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    h1 { font-size: 42px; color: #2c3e50; margin-bottom: 20px; line-height: 1.3; }
+    .meta {
+      color: #7f8c8d;
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 2px solid #ecf0f1;
+      font-family: -apple-system, sans-serif;
+    }
+    .content { font-size: 19px; line-height: 1.9; }
+    .content h2 { color: #667eea; font-size: 32px; margin: 40px 0 20px; }
+    .content h3 { color: #764ba2; font-size: 24px; margin: 30px 0 15px; }
+    .content p { margin-bottom: 20px; }
+    .content ul, .content ol { margin: 20px 0 20px 40px; }
+    .content li { margin-bottom: 10px; }
+    .content pre {
+      background: #2c3e50;
+      color: #ecf0f1;
+      padding: 20px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 25px 0;
+      font-family: 'Courier New', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .content code {
+      background: #ecf0f1;
+      color: #e74c3c;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-family: 'Courier New', monospace;
+      font-size: 16px;
+    }
+    .content pre code {
+      background: transparent;
+      color: #ecf0f1;
+      padding: 0;
+    }
+    .content strong { color: #2c3e50; font-weight: 700; }
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: #667eea;
+      text-decoration: none;
+      font-weight: bold;
+      font-family: -apple-system, sans-serif;
+    }
+    .back-link:hover { color: #764ba2; }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <a href="/">📝 Blog Home</a>
+    <a href="<%= new_articles_path %>">🤖 Generate Articles</a>
+  </div>
+
+  <div class="container">
+    <article class="article">
+      <h1><%= @article.title %></h1>
+      <div class="meta">
+        By <strong><%= @article.author %></strong> • 
+        <%= @article.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+      </div>
+      <div class="content">
+        <%= raw @article.content %>
+      </div>
+      <%= link_to "← Back to All Articles", articles_path, class: "back-link" %>
+    </article>
+  </div>
+</body>
+</html>

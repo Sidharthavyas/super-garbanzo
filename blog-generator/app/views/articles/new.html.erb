@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generate AI Articles</title>
+  <%= csrf_meta_tags %>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .nav {
+      background: rgba(255,255,255,0.95);
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .nav a {
+      color: #333;
+      text-decoration: none;
+      margin: 0 20px;
+      font-weight: 600;
+    }
+    .nav a:hover { color: #667eea; }
+    .container { max-width: 900px; margin: 0 auto; }
+    .card {
+      background: white;
+      padding: 50px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    h1 { color: #2c3e50; font-size: 42px; margin-bottom: 15px; }
+    .description { color: #7f8c8d; font-size: 18px; line-height: 1.7; margin-bottom: 35px; }
+    .example {
+      background: #f8f9fa;
+      border-left: 4px solid #667eea;
+      padding: 20px;
+      margin-bottom: 30px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+    .example strong { color: #667eea; display: block; margin-bottom: 10px; font-size: 16px; }
+    textarea {
+      width: 100%;
+      min-height: 350px;
+      padding: 20px;
+      border: 2px solid #e0e0e0;
+      border-radius: 10px;
+      font-family: monospace;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    textarea:focus { outline: none; border-color: #667eea; }
+    button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 18px 40px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 700;
+      width: 100%;
+      margin-top: 20px;
+    }
+    button:hover { transform: translateY(-3px); }
+    .tips {
+      background: #e7f3ff;
+      border-left: 4px solid #2196F3;
+      padding: 20px;
+      margin-top: 30px;
+      border-radius: 4px;
+    }
+    .tips h3 { color: #1976D2; margin-bottom: 10px; }
+    .tips ul { margin-left: 20px; color: #555; }
+    .tips li { margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="nav">
+      <a href="/">📝 Blog Home</a>
+      <a href="<%= new_articles_path %>">🤖 Generate Articles</a>
+    </div>
+
+    <div class="card">
+      <h1>🤖 AI Article Generator</h1>
+      <div class="description">
+        <p>Generate comprehensive, well-researched programming articles instantly using Google's Gemini AI.</p>
+        <p>Simply enter article titles (one per line) and optionally add specific details using the | separator.</p>
+      </div>
+
+      <div class="example">
+        <strong>📋 Example Format:</strong>
+        Introduction to Ruby on Rails | Focus on MVC architecture and routing<br>
+        Understanding PostgreSQL Indexes | Include performance benchmarks<br>
+        Docker Best Practices for Rails Apps<br>
+        RESTful API Design Patterns | Add authentication examples with JWT<br>
+        Introduction to GraphQL with Ruby | Compare with REST<br>
+        Redis Caching Strategies<br>
+        Microservices Architecture Explained<br>
+        Test-Driven Development in Rails | Include RSpec examples<br>
+        Building Real-time Apps with Action Cable<br>
+        Optimizing Database Queries in ActiveRecord
+      </div>
+
+      <%= form_with url: generate_articles_path, method: :post do |f| %>
+        <%= f.text_area :titles, 
+            placeholder: "Enter article titles here...\n\nExample:\nGetting Started with Rails 7\nUnderstanding REST APIs | Include code examples\nDocker for Beginners",
+            required: true %>
+        
+        <%= f.button "🚀 Generate Articles with AI", type: :submit %>
+      <% end %>
+
+      <div class="tips">
+        <h3>💡 Tips for Best Results:</h3>
+        <ul>
+          <li>Be specific with your titles for more focused content</li>
+          <li>Add details after | to guide the AI (e.g., "Rails Authentication | Include Devise gem")</li>
+          <li>Generation takes ~5-10 seconds per article</li>
+          <li>You can generate up to 10 articles at once</li>
+          <li>Articles are automatically saved and published</li>
+          <li>Gemini API is FREE for moderate usage (60 requests/minute)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

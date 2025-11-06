@@ -1,0 +1,27 @@
+# Ignore environment files with secrets
+**/.env
+**/.env.local
+
+# Ignore Rails temporary files
+**/tmp/
+**/log/
+**/storage/
+
+# Ignore database files
+**/*.sqlite3
+**/*.db
+
+# Ignore node modules
+**/node_modules/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Ruby gems
+**/vendor/bundle/
+
+# Ignore Rails credentials
+**/config/master.key
+**/config/credentials/*.key
+
