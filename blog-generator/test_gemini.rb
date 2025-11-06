@@ -1,7 +1,7 @@
 require 'httparty'
 require 'json'
 
-api_key = "AIzaSyD4Q7XPAfMZ1Xrj3K4-BDnyQR7OGsX51d0"
+
 
 response = HTTParty.post(
   "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-pro:generateContent?key=#{api_key}",
